@@ -1,11 +1,11 @@
 import React from 'react';
-import { AuthProvider } from './context/Hirely';
-import HirelyApp from './context/Hirely';
+import { AuthProvider } from './context/Hirely-job-portal';
+import HirelyApp from './context/Hirely-job-portal';
 
 function App() {
   return (
     <AuthProvider>
-      <HirelyApp />
+      <Hirely-job-portal/>
     </AuthProvider>
   );
 }
