@@ -1,9 +1,9 @@
-import React, { useState, useEffect, createContext, useContext, useReducer } from 'react';
-import { Search, MapPin, Briefcase, Building, Users, BarChart3, Plus, Edit, Trash2, Star, BookmarkPlus, User, LogOut, Moon, Sun, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useReducer, createContext, useContext } from 'react';
 
-// Auth Context
+// Create Auth Context
 const AuthContext = createContext();
 
+// Reducer for auth state
 const authReducer = (state, action) => {
   switch (action.type) {
     case 'LOGIN':
@@ -17,20 +17,16 @@ const authReducer = (state, action) => {
   }
 };
 
-const AuthProvider = ({ children }) => {
+// ✅ Only one AuthProvider
+export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
     user: null,
     isAuthenticated: false,
     loading: false
   });
 
-  const login = (userData) => {
-    dispatch({ type: 'LOGIN', payload: userData });
-  };
-
-  const logout = () => {
-    dispatch({ type: 'LOGOUT' });
-  };
+  const login = (userData) => dispatch({ type: 'LOGIN', payload: userData });
+  const logout = () => dispatch({ type: 'LOGOUT' });
 
   return (
     <AuthContext.Provider value={{ ...state, login, logout, dispatch }}>
@@ -38,6 +34,16 @@ const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+// ✅ Complete useAuth hook
+export const useAuth = () => useContext(AuthContext);
+
+// Optional: default export component (if you use it)
+const HirelyApp = () => {
+  return <div>Welcome to Hirely!</div>;
+};
+
+export default HirelyApp;
 
 const useAuth = () => useContext(AuthContext);
 
