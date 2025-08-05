@@ -1,9 +1,8 @@
 import React, { useReducer, createContext, useContext } from 'react';
 
-// Create Auth Context
+// 🔐 Auth Context Setup
 const AuthContext = createContext();
 
-// Reducer for auth state
 const authReducer = (state, action) => {
   switch (action.type) {
     case 'LOGIN':
@@ -17,7 +16,6 @@ const authReducer = (state, action) => {
   }
 };
 
-// ✅ Only one AuthProvider
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
     user: null,
@@ -35,17 +33,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// ✅ Complete useAuth hook
 export const useAuth = () => useContext(AuthContext);
-
-// Optional: default export component (if you use it)
-const HirelyApp = () => {
-  return <div>Welcome to Hirely!</div>;
-};
-
-export default HirelyApp;
-
-const useAuth = () => useContext(AuthContext);
 
 // Theme Context
 const ThemeContext = createContext();
