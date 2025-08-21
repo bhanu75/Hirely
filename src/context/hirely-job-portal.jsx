@@ -1,4 +1,10 @@
 import React, { useReducer, createContext, useContext } from 'react';
+import React, { useState, useEffect, useReducer, createContext, useContext } from 'react';
+import { 
+  Sun, Moon, LogOut, Search, Star, Building, MapPin, 
+  Briefcase, ChevronLeft, ChevronRight, Users, BarChart3, 
+  Edit, Trash2, Plus, User
+} from 'lucide-react';
 
 // 🔐 Auth Context Setup
 const AuthContext = createContext();
